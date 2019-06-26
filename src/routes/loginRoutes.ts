@@ -52,12 +52,12 @@ router.get('/', (req: Request, res: Response) => {
       </div>
     `);
   } else {
-    `
+    res.send(`
     <div>
       <div>You are not logged in</div>
-      < a href = "/login" > Login < /a>
-    < /div>
-  `;
+      <a href="/login">Login</a>
+    </div>
+  `);
   }
 });
 
