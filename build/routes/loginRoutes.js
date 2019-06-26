@@ -11,9 +11,6 @@ function requireAuth(req, res, next) {
 }
 var router = express_1.Router();
 exports.router = router;
-router.get('/login', function (req, res) {
-    res.send("\n    <form method=\"POST\">\n      <div>\n        <label>Email</label>\n        <input name=\"email\" />\n      </div>\n      <div>\n        <label>Password</label>\n        <input name=\"password\" type=\"password\" />\n      </div>\n      <button>Submit</button>\n    </form>\n  ");
-});
 router.post('/login', function (req, res) {
     var _a = req.body, email = _a.email, password = _a.password;
     if (email && password && email === 'hi@hi.com' && password === '1234567') {
@@ -29,7 +26,7 @@ router.get('/', function (req, res) {
         res.send("\n      <div>\n        <div>You are logged in</div>\n        <a href=\"/logout\">Logout</a>\n      </div>\n    ");
     }
     else {
-        res.send("\n    <div>\n      <div>You are not logged in</div>\n      <a href=\"/login\">Login</a>\n    </div>\n  ");
+        res.send("\n      <div>\n        <div>You are not logged in</div>\n        <a href=\"auth/login\">Login</a>\n      </div>\n  ");
     }
 });
 router.get('/logout', function (req, res) {
@@ -44,3 +41,14 @@ function post(routeName) {
         router.post(routeName, target[key]);
     };
 }
+//Meta data:
+//npm install reflect-meta...
+//import {reflect-meta} from ...
+// const plane = {
+//   color: 'red'
+// };
+//const note = Reflect.getMetadata('note', plane, 'color');
+// console.log(note);
+// Reflect.defineMetadata('note', 'hi there', plane, 'color');
+//This means use an identifier of note, attach 'hi there'
+//to the plane object's color property

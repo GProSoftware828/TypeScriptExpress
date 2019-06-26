@@ -16,22 +16,6 @@ function requireAuth(req: Request, res: Response, next: NextFunction): void {
 
 const router = Router();
 
-router.get('/login', (req: Request, res: Response) => {
-  res.send(`
-    <form method="POST">
-      <div>
-        <label>Email</label>
-        <input name="email" />
-      </div>
-      <div>
-        <label>Password</label>
-        <input name="password" type="password" />
-      </div>
-      <button>Submit</button>
-    </form>
-  `);
-});
-
 router.post('/login', (req: RequestWithBody, res: Response) => {
   const { email, password } = req.body;
 
@@ -53,10 +37,10 @@ router.get('/', (req: Request, res: Response) => {
     `);
   } else {
     res.send(`
-    <div>
-      <div>You are not logged in</div>
-      <a href="/login">Login</a>
-    </div>
+      <div>
+        <div>You are not logged in</div>
+        <a href="auth/login">Login</a>
+      </div>
   `);
   }
 });
@@ -76,4 +60,24 @@ function post(routeName: string) {
   };
 }
 
+// function use(middleware: any) {
+//   return function (target: any, key: string, desc: PropertyDescriptor) {
+//     router.
+//   }
+// }
+
 export { router };
+
+//Meta data:
+//npm install reflect-meta...
+//import {reflect-meta} from ...
+
+// const plane = {
+//   color: 'red'
+// };
+
+//const note = Reflect.getMetadata('note', plane, 'color');
+// console.log(note);
+// Reflect.defineMetadata('note', 'hi there', plane, 'color');
+//This means use an identifier of note, attach 'hi there'
+//to the plane object's color property
